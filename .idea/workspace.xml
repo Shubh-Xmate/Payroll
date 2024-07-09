@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="317227d9-1ba3-4785-be95-00c0e10098c6" name="Changes" comment="" />
+    <list default="true" id="317227d9-1ba3-4785-be95-00c0e10098c6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Payroll/src/main/java/org/example/Main.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,10 +22,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2ipHaSzr1MFpAR5hjF7unGKJyJX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,7 +34,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "leaveService",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
