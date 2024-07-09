@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="317227d9-1ba3-4785-be95-00c0e10098c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Payroll/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leave/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/leave/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +27,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.LeaveApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "leaveService",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "build.tools"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="LeaveApplication" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="/leave/src/main/java/com/payroll/leave/LeaveApplication.java" />
+      <module name="Payroll" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
