@@ -1,25 +1,21 @@
-package com.training.accounts.entity;
+package com.payroll.leave.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import com.payroll.leave.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "leave")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Leave extends BaseEntity{
-
-    public class Leave extends BaseEntity {
+public class Leave extends BaseEntity {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,15 +30,15 @@ public class Leave extends BaseEntity{
 
         @NotNull(message = "Start date cannot be empty")
         @Temporal(TemporalType.DATE)
-        private Date startDate;
+        private LocalDate startDate;
 
         @NotNull(message = "End date cannot be empty")
         @Temporal(TemporalType.DATE)
-        private Date endDate;
+        private LocalDate endDate;
 
         @NotNull(message = "Applied date cannot be empty")
         @Temporal(TemporalType.DATE)
-        private Date appliedDate;
+        private LocalDate appliedDate;
 
         @NotNull(message = "Status cannot be empty")
         @Size(min = 1, max = 30, message = "Status should be between 1 and 30 characters")

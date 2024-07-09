@@ -1,4 +1,4 @@
-package com.training.accounts.entity;
+package com.payroll.leave.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

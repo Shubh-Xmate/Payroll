@@ -1,4 +1,4 @@
-package com.training.accounts.exception;
+package com.payroll.leave.exception;
 
 import com.training.accounts.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
@@ -34,14 +34,5 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND ).body(errorResponseDto);
     }
 
-    @ExceptionHandler(CustomerAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException ex, WebRequest webRequest){
-        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
-                ex.getMessage(),
-                webRequest.getDescription(false),
-                LocalDateTime.now(),
-                HttpStatus.BAD_REQUEST
-        );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
-    }
+
 }
