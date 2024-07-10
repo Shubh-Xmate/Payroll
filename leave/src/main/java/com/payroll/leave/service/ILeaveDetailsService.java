@@ -4,11 +4,11 @@ import com.payroll.leave.dto.LeaveDetailsDto;
 
 public abstract class ILeaveDetailsService {
 
-    public abstract void createAccount(LeaveDetailsDto leaveDetailsDto);
+    public abstract void createAccount(Long employeeId);
 
-    public abstract LeaveDetailsDto fetchAccountDetails(Long employeeId, Long year);
+    public abstract LeaveDetailsDto fetchAccountDetails(Long employeeId, Long leaveYear);
 
-    public abstract boolean deleteAccount(Long employeeId, Long year);
+    public abstract boolean deleteAccount(Long employeeId, Long leaveYear);
 
-    public abstract boolean updateAccount(Long employeeId, Long year, LeaveDetailsDto leaveDetailsDto);
+    public abstract boolean updateAccount(Long employeeId, Long leaveYear, LeaveDetailsDto leaveDetailsDto);
 }

@@ -34,5 +34,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND ).body(errorResponseDto);
     }
 
+    @ExceptionHandler(EmployeeAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(EmployeeAlreadyExistsException ex, WebRequest webRequest) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                ex.getMessage(),
+                webRequest.getDescription(false),
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST
+        );
 
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
+    }
 }

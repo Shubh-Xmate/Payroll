@@ -4,7 +4,7 @@ CREATE TABLE if NOT EXISTS `leave_details` (
     `remaining_sick_leaves` INT NOT NULL DEFAULT 7,
     `remaining_casual_leaves` INT NOT NULL DEFAULT 12,
     `remaining_earned_leaves` INT NOT NULL DEFAULT 21,
-    `year` INT NOT NULL,
+    `leave_year` INT NOT NULL,
     `paid_leaves` INT NOT NULL DEFAULT 0,
     `total_paid_leaves` INT NOT NULL DEFAULT 0,
     `created_at` date NOT NULL,

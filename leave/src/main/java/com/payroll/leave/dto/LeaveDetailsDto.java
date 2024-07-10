@@ -10,9 +10,15 @@ public class LeaveDetailsDto {
 
     private Long employeeId;
 
-    private String name;
+    private Long remainingSickLeaves;
 
-    private String email;
+    private Long remainingCasualLeaves;
 
-    private String mobileNumber;
+    private Long remainingEarnedLeaves;
+
+    private Long leaveYear;
+
+    private Long paidLeaves;
+
+    private Long totalPaidLeaves;
 }
