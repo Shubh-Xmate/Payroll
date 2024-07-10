@@ -11,19 +11,12 @@ import java.time.LocalDate;
 public class LeaveDto {
 
     private Integer employeeId;
-
     private String leaveType;
-
     private LocalDate startDate;
-
     private LocalDate endDate;
-
     private LocalDate appliedDate;
-
     private String status;
-
     private String comments;
-
     private Integer managerId;
 
 }

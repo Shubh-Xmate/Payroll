@@ -19,6 +19,10 @@ CREATE TABLE if NOT EXISTS `leave` (
     `applied_date` date NOT NULL,
     `status` varchar(30) NOT NULL,
     `comments` varchar(200) NOT NULL,
-    `managerId` int NOT NULL
+    `manager_id` int NOT NULL,
+    `created_at` date NOT NULL,
+    `created_by` varchar(30) NOT NULL,
+    `updated_at` date DEFAULT NULL,
+    `updated_by` varchar(30) DEFAULT NULL
 
 );

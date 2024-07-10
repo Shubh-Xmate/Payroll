@@ -1,6 +1,6 @@
 package com.payroll.leave.exception;
 
-import com.training.accounts.dto.ErrorResponseDto;
+import com.payroll.leave.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
