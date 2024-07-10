@@ -26,8 +26,8 @@ public class SalaryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createSalary(@Valid @RequestParam Long salaryId, @RequestBody SalaryDto salaryDto) {
-        iSalaryService.createSalary(salaryDto,salaryId);
+    public ResponseEntity<ResponseDto> createSalary(@Valid @RequestBody SalaryDto salaryDto) {
+        iSalaryService.createSalary(salaryDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto("201","Created successfully"));

@@ -6,7 +6,7 @@ import com.payrollAndSalary.salary.entity.Salary;
 import java.util.List;
 
 public interface ISalaryService {
-    void createSalary(SalaryDto salaryDto,Long salaryId);
+    void createSalary(SalaryDto salaryDto);
 
     SalaryDto fetchSalaryDetails(Long salaryId);
 

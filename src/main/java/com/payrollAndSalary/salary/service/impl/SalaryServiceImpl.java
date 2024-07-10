@@ -20,13 +20,12 @@ public class SalaryServiceImpl implements ISalaryService {
     private SalaryRepository salaryRepository;
 
     @Override
-    public void createSalary(SalaryDto salaryDto,Long salaryId) {
-        Optional<Salary> foundSalary = salaryRepository.findBySalaryId(salaryId);
-        if(foundSalary.isPresent()) {
-            throw new SalaryAlreadyExistsException("Salary already exists for this salary id");
-        }
+    public void createSalary(SalaryDto salaryDto) {
+//        Optional<Salary> foundSalary = salaryRepository.findBySalaryId(salaryId);
+//        if(foundSalary.isPresent()) {
+//            throw new SalaryAlreadyExistsException("Salary already exists for this salary id");
+//        }
         Salary salary = SalaryMapper.mapToSalary(salaryDto,new Salary());
-        salary.setSalaryId(salaryId);
         salaryRepository.save(salary);
     }
 

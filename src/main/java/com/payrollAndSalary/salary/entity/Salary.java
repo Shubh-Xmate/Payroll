@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Salary extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long salaryId;
 
     @NotNull(message = "Basic salary cannot be empty")
