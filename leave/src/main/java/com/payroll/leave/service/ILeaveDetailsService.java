@@ -8,7 +8,7 @@ public abstract class ILeaveDetailsService {
 
     public abstract LeaveDetailsDto fetchAccountDetails(Long employeeId, Long leaveYear);
 
-    public abstract boolean deleteAccount(Long employeeId, Long leaveYear);
+    public abstract boolean deleteAccount(Long employeeId);
 
     public abstract boolean updateAccount(Long employeeId, Long leaveYear, LeaveDetailsDto leaveDetailsDto);
 }

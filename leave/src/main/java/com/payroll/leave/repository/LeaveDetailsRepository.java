@@ -14,4 +14,6 @@ public interface LeaveDetailsRepository extends JpaRepository<LeaveDetails, Long
 
     @Query("select LD from LeaveDetails LD where (employeeId = :employeeId and leaveYear = :leaveYear)")
     Optional<LeaveDetails> findByEmployeeIdAndLeaveYear(@Param("employeeId") Long employeeId, @Param("leaveYear") Long leaveYear);
+
+    void deleteAllByEmployeeId(Long employeeId);
 }

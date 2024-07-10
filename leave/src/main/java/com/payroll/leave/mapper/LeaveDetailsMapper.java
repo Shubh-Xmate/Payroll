@@ -23,7 +23,7 @@ public class LeaveDetailsMapper {
         leaveDetails.setRemainingSickLeaves(leaveDetailsDto.getRemainingSickLeaves());
         leaveDetails.setRemainingCasualLeaves(leaveDetailsDto.getRemainingCasualLeaves());
         leaveDetails.setRemainingEarnedLeaves(leaveDetailsDto.getRemainingEarnedLeaves());
-        leaveDetails.setLeaveDetailId(leaveDetailsDto.getLeaveYear());
+        leaveDetails.setLeaveYear(leaveDetailsDto.getLeaveYear());
         leaveDetails.setPaidLeaves(leaveDetailsDto.getPaidLeaves());
         leaveDetails.setTotalPaidLeaves(leaveDetailsDto.getTotalPaidLeaves());
 
