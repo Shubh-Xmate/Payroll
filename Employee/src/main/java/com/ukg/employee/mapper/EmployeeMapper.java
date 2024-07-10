@@ -14,6 +14,7 @@ public class EmployeeMapper {
         employeeDto.setDateOfJoining(employee.getDateOfJoining());
         employeeDto.setRoleId(employee.getRoleId());
         employeeDto.setSalaryId(employee.getSalaryId());
+        employeeDto.setEmployeeId(employee.getEmployeeId());
         return employeeDto;
     }
 
@@ -26,6 +27,7 @@ public class EmployeeMapper {
         employee.setDateOfJoining(employeeDto.getDateOfJoining());
         employee.setRoleId(employeeDto.getRoleId());
         employee.setSalaryId(employeeDto.getSalaryId());
+        employee.setEmployeeId(employeeDto.getEmployeeId());
         return employee;
     }
 }

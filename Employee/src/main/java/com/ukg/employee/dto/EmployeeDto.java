@@ -24,6 +24,7 @@ public class EmployeeDto {
     private String roleId;
     private LocalDate dateOfJoining;
     private Long salaryId;
+    private Long EmployeeId;
 //    private LeaveDetailsDto leaveDetailsDto;
 //    private PayrollDto payrollDto;
 //    private SalaryDto salaryDto;

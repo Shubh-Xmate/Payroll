@@ -73,8 +73,8 @@ public class EmployeeController {
 //        List<EmployeeDto> employeeDtoList = iEmployeeService.getAll();
 //        return ResponseEntity.status(HttpStatus.OK).body(employeeDtoList);
 //    }
-    @GetMapping("/hello")
-    public ResponseEntity<String> helloworld() {
-        return ResponseEntity.status(HttpStatus.OK).body("Hello World");
-    }
+//    @GetMapping("/hello")
+//    public ResponseEntity<String> helloworld() {
+//        return ResponseEntity.status(HttpStatus.OK).body("Hello World");
+//    }
 }
