@@ -68,11 +68,11 @@ public class EmployeeController {
                     .body(new ResponseDto("500", "Internal server error"));
         }
     }
-//    @GetMapping("/fetchall")
-//    public ResponseEntity<List<EmployeeDto>> getAllCustomer(){
-//        List<EmployeeDto> employeeDtoList = iEmployeeService.getAll();
-//        return ResponseEntity.status(HttpStatus.OK).body(employeeDtoList);
-//    }
+    @GetMapping("/fetchall")
+    public ResponseEntity<List<EmployeeDto>> getAllCustomer(){
+        List<EmployeeDto> employeeDtoList = iEmployeeService.getAll();
+        return ResponseEntity.status(HttpStatus.OK).body(employeeDtoList);
+    }
 //    @GetMapping("/hello")
 //    public ResponseEntity<String> helloworld() {
 //        return ResponseEntity.status(HttpStatus.OK).body("Hello World");

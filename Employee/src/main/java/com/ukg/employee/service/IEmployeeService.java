@@ -13,6 +13,7 @@ public interface IEmployeeService {
     boolean deleteEmployee(String mobileNumber);
 
     boolean updateEmployeeDetails(String mobileNumber, EmployeeDto employeeDto);
-//
-//    List<EmployeeDto> getAll();
+
+    List<EmployeeDto> getAll();
+
 }
