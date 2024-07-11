@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: "https://github.com/SGR2807/v1_synergybank"
+          uri: "https://github.com/SGR2807/v1_synergybank.git"
           default-label: "main"
           timeout: 5
           clone-on-start: true
