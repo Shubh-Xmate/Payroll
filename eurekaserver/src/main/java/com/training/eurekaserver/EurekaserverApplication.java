@@ -1,4 +1,4 @@
-package com.payroll.leave;
+package com.training.eurekaserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer
-public class LeaveApplication {
+public class EurekaserverApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LeaveApplication.class, args);
+		SpringApplication.run(EurekaserverApplication.class, args);
 	}
 
 }

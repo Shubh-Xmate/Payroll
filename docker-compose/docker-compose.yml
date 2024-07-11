@@ -1,0 +1,38 @@
+services:
+  configserver:
+    image: shaileshrathod647/configserver:1.0.0
+    container_name: configserver
+    ports:
+      - "8071:8071"
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - payrollnetwork
+
+  leave:
+    image: shaileshrathod647/leave:1.0.0
+    container_name: "leave-ms"
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_APPLICATION_NAME: "leave"
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    networks:
+      - payrollnetwork
+
