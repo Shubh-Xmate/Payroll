@@ -23,31 +23,36 @@ spring:
     console:
       enabled: true
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: "*"
-    info:
-      env:
-        enabled: true
-    endpoint:
-      shutdown:
-        enabled: true
+management:
   endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
     shutdown:
       enabled: true
-  eureka:
-    instance:
-      preferIpAddress: true
-    client:
-      fetchRegistry: true
-      registerWithEureka: true
-      serviceUrl:
-        defaultZone: "http://localhost:8070/eureka/"
 
-  info:
-    app:
-      name: "Leave Microservice"
-      description: "Leave Microservice for Payroll Services"
-      version: "1.0.0"
+
+endpoints:
+  shutdown:
+    enabled: true
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: "http://localhost:8070/eureka/"
+
+
+info:
+  app:
+    name: "Leave Microservice"
+    description: "Leave Microservice for Payroll Services"
+    version: "1.0.0"
