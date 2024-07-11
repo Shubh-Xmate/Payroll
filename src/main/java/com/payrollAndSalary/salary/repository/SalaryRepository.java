@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface SalaryRepository extends JpaRepository<Salary,Long> {
     Optional<Salary> findBySalaryId(Long salaryId);
+
+
 }
