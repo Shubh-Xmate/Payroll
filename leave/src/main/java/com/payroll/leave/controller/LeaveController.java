@@ -1,9 +1,7 @@
 package com.payroll.leave.controller;
 
-import com.payroll.leave.dto.LeaveDetailsDto;
 import com.payroll.leave.dto.LeaveDto;
 import com.payroll.leave.dto.ResponseDto;
-import com.payroll.leave.entity.Leave;
 import com.payroll.leave.service.ILeaveService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
