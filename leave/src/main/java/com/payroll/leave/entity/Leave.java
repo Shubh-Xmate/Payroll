@@ -22,7 +22,7 @@ public class Leave extends BaseEntity {
         private Long leaveId;
 
         @NotNull(message = "Employee ID cannot be empty")
-        private Integer employeeId;
+        private Long employeeId;
 
         @NotNull(message = "Leave type cannot be empty")
         @Size(min = 1, max = 20, message = "Leave type should be between 1 and 20 characters")
@@ -48,5 +48,5 @@ public class Leave extends BaseEntity {
         private String comments;
 
         @NotNull(message = "Manager ID cannot be empty")
-        private Integer managerId;
+        private Long managerId;
 }

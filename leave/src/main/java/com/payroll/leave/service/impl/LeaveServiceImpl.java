@@ -1,18 +1,24 @@
 package com.payroll.leave.service.impl;
 
 
+import com.payroll.leave.dto.LeaveDetailsDto;
 import com.payroll.leave.dto.LeaveDto;
 import com.payroll.leave.entity.Leave;
+import com.payroll.leave.entity.LeaveDetails;
+import com.payroll.leave.exception.ResourceNotFoundException;
 import com.payroll.leave.mapper.LeaveMapper;
+import com.payroll.leave.repository.LeaveDetailsRepository;
 import com.payroll.leave.repository.LeaveRepository;
+import com.payroll.leave.service.ILeaveDetailsService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.payroll.leave.service.ILeaveService;
-import java.util.ArrayList;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -20,12 +26,64 @@ import java.util.Random;
 public class LeaveServiceImpl implements ILeaveService {
 
     private LeaveRepository leaveRepository;
+    private LeaveDetailsRepository leaveDetailsRepository;
+    private ILeaveDetailsService iLeaveDetailsService;
 
     @Override
-    public void createLeaveRequest(LeaveDto leaveDto) {
-        Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
-        leaveRepository.save(leave);
+    public boolean createLeaveRequest(LeaveDto leaveDto) {
+        boolean isCreated = false;
+        Long leaveYear = (long) LocalDate.now().getYear();
+        LeaveDetailsDto leaveDetailsDto = iLeaveDetailsService.fetchAccountDetails(leaveDto.getEmployeeId(), leaveYear);
+        if(validLeave(leaveDto, leaveDetailsDto)){
+            System.out.println("Shailesh");
+            Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
+            leaveRepository.save(leave);
+            isCreated = true;
+        }
+        return isCreated;
     }
+
+    public static long countOfficeDays(LocalDate startDate, LocalDate endDate) {
+        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        long officeDaysCount = 0;
+
+        for (long i = 0; i <= daysBetween; i++) {
+            LocalDate currentDate = startDate.plusDays(i);
+            DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
+            if (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY) {
+                officeDaysCount++;
+            }
+        }
+
+        return officeDaysCount;
+    }
+
+    public static boolean validLeave(LeaveDto leaveDto, LeaveDetailsDto leaveDetailsDto){
+        if (leaveDto.getLeaveType() != null) {
+            long officeDays = countOfficeDays(leaveDto.getStartDate(), leaveDto.getEndDate());
+            boolean isLeaveValid = false;
+
+            switch (leaveDto.getLeaveType().toLowerCase()) {
+                case "sick":
+                    isLeaveValid = officeDays <= leaveDetailsDto.getRemainingSickLeaves();
+                    break;
+                case "casual":
+                    isLeaveValid = officeDays <= leaveDetailsDto.getRemainingCasualLeaves();
+                    break;
+                case "earned":
+                    isLeaveValid = officeDays <= leaveDetailsDto.getRemainingEarnedLeaves();
+                    break;
+                default:
+                    break;
+            }
+
+            return isLeaveValid;
+        }
+        return false;
+
+    }
+
+
 
     @Override
     public List<LeaveDto> getAllLeave(Long employeeId) {
@@ -34,109 +92,41 @@ public class LeaveServiceImpl implements ILeaveService {
                 -> LeaveMapper.mapToLeaveDto(leave, new LeaveDto())).toList();
     }
 
+    @Override
+    public void changeLeaveStatus( Long leaveId, String status, LeaveDto leaveDto) {
+        Leave leave = leaveRepository.findById(leaveId).orElseThrow(() ->
+                new ResourceNotFoundException("Leave", "leaveId", leaveId.toString()));
+        leaveDto.setStatus(status);
+        LeaveDetails leaveDetails = leaveDetailsRepository.findByEmployeeId(leave.getEmployeeId()).orElseThrow(() ->
+                new ResourceNotFoundException("LeaveDetails", "EmployeeId", leaveDto.getEmployeeId().toString()));
+        Leave updatedLeave = LeaveMapper.mapToLeave(leaveDto, leave);
+        if(status.equals("APPROVED")){
+            long officeDays = countOfficeDays(leave.getStartDate(), leave.getEndDate());
+            decrementLeaveDetails(leave.getLeaveType(), leaveDetails, officeDays);
+        }
+        else{
+            return;
+        }
+        leaveDetailsRepository.save(leaveDetails);
+        leaveRepository.save(updatedLeave);
 
-//    private CustomerRepository customerRepository;
-//    private AccountsRepository accountsRepository;
-//
-//    @Override
-//    public void createAccount(CustomerDto customerDto){
-//
-//
-//        Optional<Customer> foundCustomer= customerRepository.findByMobileNumber(customerDto.getMobileNumber());
-//        if(foundCustomer.isPresent()){
-//            throw new CustomerAlreadyExistsException("Customer already exists for this mobile number");
-//        }
-//        Customer customer = CustomerMapper.mapToCustomer(customerDto, new Customer());
-////        customer.setCreatedAt(LocalDateTime.now());
-////        customer.setCreatedBy("Me");
-//        customerRepository.save(customer);
-//
-//        Accounts accounts = createNewAccount(customer.getCustomerId());
-//        accountsRepository.save(accounts);
-//    }
-//
-//    private Accounts createNewAccount(Long customerId){
-//        Accounts accounts = new Accounts();
-//        accounts.setCustomerId(customerId);
-//        accounts.setAccountType("SAVINGS");
-//        long randAcc = 100000000L + new Random().nextInt( 90000000);
-//        accounts.setAccountNumber(String.valueOf(randAcc));
-//        accounts.setBranchAddress("abc Home at post xyz colony");
-////        accounts.setCreatedAt(LocalDateTime.now());
-////        accounts.setCreatedBy("me");
-//        return accounts;
-//    }
-//
-//    @Override
-//    public CustomerDto getAccountDetails(String mobileNumber){
-//        Customer foundCustomer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(()->
-//                new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber));
-//        Accounts accounts = accountsRepository.findByCustomerId(foundCustomer.getCustomerId()).orElseThrow(()->
-//                new ResourceNotFoundException("Accounts", "customerId", foundCustomer.getCustomerId().toString()));
-//
-//        CustomerDto customerDto = CustomerMapper.mapToCustomerDto(foundCustomer, new CustomerDto());
-//        AccountsDto accountsDto = AccountsMapper.mapToAccountsDto(accounts, new AccountsDto());
-//
-//        customerDto.setAccountsDto(accountsDto);
-//
-//        return customerDto;
-//    }
-//
-//    @Override
-//    public boolean updateAccount(String mobileNumber, CustomerDto customerDto){
-//        boolean isUpdated = false;
-//
-//        Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(() ->
-//                new ResourceNotFoundException("Customer",  "mobileNumber", mobileNumber));
-//
-//        if (customer != null) {
-//
-//            Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(()->
-//                new ResourceNotFoundException("Accounts", "customerId", customer.getCustomerId().toString()));
-//
-//            Customer updatedCustomer = CustomerMapper.mapToCustomer(customerDto, customer);
-//            customerRepository.save(updatedCustomer);
-//
-//            Accounts updatedAccounts = AccountsMapper.mapToAccounts(customerDto.getAccountsDto(), accounts);
-//            accountsRepository.save(updatedAccounts);
-//
-//            isUpdated = true;
-//        }
-//
-//        return isUpdated;
-//    }
-//
-//    @Override
-//    public boolean deleteAccountMethod(String mobileNumber) {
-//        boolean isDeleted = false;
-//        Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(() ->
-//                new ResourceNotFoundException("Customer",  "mobileNumber", mobileNumber));
-//
-//        if(customer != null){
-//            accountsRepository.deleteByCustomerId(customer.getCustomerId());
-//            customerRepository.deleteById(customer.getCustomerId());
-//            isDeleted =true;
-//        }
-//        return isDeleted;
-//    }
-//
-//    @Override
-//    public List<CustomerDto> getAllAccount() {
-//        List<Customer> customerList = customerRepository.findAll();
-//        List<CustomerDto> customerDtoList = new ArrayList<>();
-//
-//        for(Customer customer : customerList){
-//            CustomerDto customerDto = CustomerMapper.mapToCustomerDto(customer, new CustomerDto());
-//            Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(() ->
-//                    new ResourceNotFoundException("Accounts", "customerId", customer.getCustomerId().toString()) );
-//
-//            AccountsDto accountsDto = AccountsMapper.mapToAccountsDto(accounts, new AccountsDto());
-//            customerDto.setAccountsDto(accountsDto);
-//            customerDtoList.add(customerDto);
-//        }
-//
-//        return customerDtoList;
-//    }
-//
+    }
+
+    public static void decrementLeaveDetails(String leaveType, LeaveDetails leaveDetails, Long officeDays){
+        switch (leaveType.toLowerCase()) {
+            case "sick":
+                leaveDetails.setRemainingSickLeaves(leaveDetails.getRemainingSickLeaves() - officeDays);
+                break;
+            case "casual":
+                leaveDetails.setRemainingCasualLeaves(leaveDetails.getRemainingCasualLeaves() - officeDays);
+                break;
+            case "earned":
+                leaveDetails.setRemainingEarnedLeaves(leaveDetails.getRemainingEarnedLeaves() - officeDays);
+                break;
+            default:
+                leaveDetails.setPaidLeaves(leaveDetails.getPaidLeaves() + officeDays);
+                break;
+        }
+    }
 
 }

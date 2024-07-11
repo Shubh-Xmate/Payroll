@@ -10,13 +10,13 @@ import java.time.LocalDate;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class LeaveDto {
 
-    private Integer employeeId;
+    private Long employeeId;
     private String leaveType;
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate appliedDate;
     private String status;
     private String comments;
-    private Integer managerId;
+    private Long managerId;
 
 }
