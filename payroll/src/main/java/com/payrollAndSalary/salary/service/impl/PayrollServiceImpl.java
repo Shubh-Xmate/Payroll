@@ -1,6 +1,7 @@
 package com.payrollAndSalary.salary.service.impl;
 
 import com.payrollAndSalary.salary.dto.PayrollDto;
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.entity.Payroll;
 import com.payrollAndSalary.salary.entity.Salary;
 import com.payrollAndSalary.salary.exception.PayrollAlreadyExistsException;
@@ -9,6 +10,8 @@ import com.payrollAndSalary.salary.mapper.PayrollMapper;
 import com.payrollAndSalary.salary.repository.PayrollRepository;
 import com.payrollAndSalary.salary.repository.SalaryRepository;
 import com.payrollAndSalary.salary.service.IPayrollService;
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +53,8 @@ public class PayrollServiceImpl implements IPayrollService {
         double allowance = 5000.0;
 
         // Assume paidLeave is fetched from another branch
-        double paidLeave = fetchPaidLeave(employeeId);
+         double paidLeave= fetchPaidLeave(employeeId);
+//        double paidLeave = PaidLeaveDetailDto.getpaidLeaves();
         double deductions = calculateDeductions(basicSalary, paidLeave, now);
 
 
@@ -68,8 +72,7 @@ public class PayrollServiceImpl implements IPayrollService {
     }
 
     private double fetchPaidLeave(Long employeeId) {
-//         Implement logic to fetch paid leave value based on employeeId
-//         This is a placeholder implementation
+//
         return 2.0;
     }
 
