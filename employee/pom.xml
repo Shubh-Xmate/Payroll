@@ -12,7 +12,7 @@
 	<artifactId>employee</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>employee</name>
-	<description>Employee Service for Synergy Bank</description>
+	<description>Employee Service for Payroll project</description>
 	<url/>
 	<licenses>
 		<license/>

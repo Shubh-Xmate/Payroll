@@ -84,19 +84,14 @@ public class EmployeeServiceImpl implements IEmployeeService {
         return isDeleted;
     }
 //    @Override
-//    public List<EmployeeDto> getAll(){
-//        List<Employee> customerList = employeeRepository.findAll();
-//        List<EmployeeDto> employeeDtoList = new ArrayList<>();
-//        for(Employee customer:customerList){
-//            EmployeeDto employeeDto = EmployeeMapper.mapToCustomerDto(customer, new EmployeeDto());
-//            accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
-//                    () -> new ResourceNotFoundException("Accounts", " customerId", customer.getCustomerId().toString())
-//            );
-//            AccountsDto accountsDto = AccountsMapper.mapToAccountsDto(accounts, new AccountsDto());
-//            employeeDto.setAccountsDto(accountsDto);
-//            employeeDtoList.add(employeeDto);
-//        }
-//        return employeeDtoList;
-//
-//    }
+    public List<EmployeeDto> getAll(){
+        List<Employee> employeeList = employeeRepository.findAll();
+        List<EmployeeDto> employeeDtoList = new ArrayList<>();
+        for(Employee employee : employeeList){
+            EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(employee, new EmployeeDto());
+            employeeDtoList.add(employeeDto);
+        }
+        return employeeDtoList;
+
+    }
 }
