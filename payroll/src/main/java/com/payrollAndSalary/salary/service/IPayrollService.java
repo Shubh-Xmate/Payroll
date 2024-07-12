@@ -1,5 +1,6 @@
 package com.payrollAndSalary.salary.service;
 
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
 import com.payrollAndSalary.salary.dto.SalaryDto;
 

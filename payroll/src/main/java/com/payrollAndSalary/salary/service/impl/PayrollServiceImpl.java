@@ -3,6 +3,8 @@ package com.payrollAndSalary.salary.service.impl;
 import com.payrollAndSalary.salary.dto.EmployeeDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
 import com.payrollAndSalary.salary.dto.SalaryDto;
+
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.entity.Payroll;
 import com.payrollAndSalary.salary.entity.Salary;
 import com.payrollAndSalary.salary.exception.PayrollAlreadyExistsException;
@@ -13,6 +15,8 @@ import com.payrollAndSalary.salary.repository.SalaryRepository;
 import com.payrollAndSalary.salary.service.IPayrollService;
 import com.payrollAndSalary.salary.service.ISalaryService;
 import com.payrollAndSalary.salary.service.clients.EmployeeFeignClient;
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -62,6 +66,7 @@ public class PayrollServiceImpl implements IPayrollService {
 //        double paidLeave = fetchPaidLeave(employeeId); // not present now
         double paidLeave = 1.0;
         double deductions = calculateDeductions(salaryDto.getBasicSalary(), paidLeave, now);
+
 
 
         double netSalary = salaryDto.getHra() + salaryDto.getBasicSalary() + salaryDto.getAllowances() - deductions;
