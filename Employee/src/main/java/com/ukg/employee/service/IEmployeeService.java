@@ -14,5 +14,5 @@ public interface IEmployeeService {
 
     boolean updateEmployeeDetails(String mobileNumber, EmployeeDto employeeDto);
 //
-//    List<EmployeeDto> getAll();
+    List<EmployeeDto> getAll();
 }
