@@ -2,10 +2,8 @@ package com.payrollAndSalary.salary.controller;
 
 import com.payrollAndSalary.salary.dto.ResponseDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
-import com.payrollAndSalary.salary.entity.Payroll;
 import com.payrollAndSalary.salary.service.IPayrollService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +23,17 @@ public class PayrollController {
         return ResponseEntity.status(HttpStatus.OK).body("Hello World");
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createPayroll(@RequestBody PayrollDto payrollDto) {
-        iPayrollService.createPayroll(payrollDto.getEmployeeId());
+//    @PostMapping("/create")
+//    public ResponseEntity<ResponseDto> createPayroll(@RequestParam Long employeeId) {
+//        iPayrollService.createPayroll(employeeId);
+//        return ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(new ResponseDto("201", "Created successfully"));
+//    }
+
+    @PostMapping("/createforall")
+    public ResponseEntity<ResponseDto> createPayroll() {
+        iPayrollService.getEmployeesPayrolls();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto("201", "Created successfully"));

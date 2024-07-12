@@ -1,6 +1,10 @@
 package com.payrollAndSalary.salary.service.impl;
 
+import com.payrollAndSalary.salary.dto.EmployeeDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
+import com.payrollAndSalary.salary.dto.SalaryDto;
+
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.entity.Payroll;
 import com.payrollAndSalary.salary.entity.Salary;
 import com.payrollAndSalary.salary.exception.PayrollAlreadyExistsException;
@@ -9,7 +13,12 @@ import com.payrollAndSalary.salary.mapper.PayrollMapper;
 import com.payrollAndSalary.salary.repository.PayrollRepository;
 import com.payrollAndSalary.salary.repository.SalaryRepository;
 import com.payrollAndSalary.salary.service.IPayrollService;
+import com.payrollAndSalary.salary.service.ISalaryService;
+import com.payrollAndSalary.salary.service.clients.EmployeeFeignClient;
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
+
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,63 +33,61 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PayrollServiceImpl implements IPayrollService {
     private final PayrollRepository payrollRepository;
-//    private final SalaryRepository salaryRepository;
+    private final EmployeeFeignClient employeeFeignClient;
+    private final ISalaryService iSalaryService;
+
 
     @Override
-    public void createPayroll(Long employeeId) {
-//        Payroll payroll = new Payroll();
+    public List<PayrollDto> getEmployeesPayrolls() {
+        ResponseEntity<List<EmployeeDto>> employeeDtoListResponseEntity = employeeFeignClient.fetchAllEmployees();
 
-        // Automatically set month and year
+        List<EmployeeDto> employeeDtoList = employeeDtoListResponseEntity.getBody();
+        List<PayrollDto> payrollDtoList = new ArrayList<>();
+        if(employeeDtoList != null) {
+            for (EmployeeDto employeeDto : employeeDtoList) {
+                SalaryDto salaryDto = iSalaryService.fetchSalaryDetails(employeeDto.getSalaryId());
+                PayrollDto payrollDto = createPayroll(employeeDto.getEmployeeId(), salaryDto);
+                payrollDtoList.add(payrollDto);
+            }
+        } else {
+            throw new ResourceNotFoundException("Employee","employees",0L);
+        }
+
+        return payrollDtoList;
+    }
+    @Override
+    public PayrollDto createPayroll(Long employeeId, SalaryDto salaryDto) {
+
+        // Automatically get month and year
         LocalDate now = LocalDate.now();
         String month = now.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        int year = now.getYear();
-
-        // Fetch salary details for the employee
-//        Salary salary = salaryRepository.findByEmployeeId(employeeId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Salary", "employeeId", employeeId.toString()));
-
-        // Calculate deductions and net salary
-//        double hra = salary.getHra();
-//        double allowance = salary.getAllowance();
-//        double basicSalary = salary.getBasicSalary();
-
-        // Mock salary details for the employee
-        double basicSalary = 20000.0;
-        double hra = 15000.0;
-        double allowance = 5000.0;
 
         // Assume paidLeave is fetched from another branch
-        double paidLeave = fetchPaidLeave(employeeId);
-        double deductions = calculateDeductions(basicSalary, paidLeave, now);
+//        double paidLeave = fetchPaidLeave(employeeId); // not present now
+        double paidLeave = 1.0;
+        double deductions = calculateDeductions(salaryDto.getBasicSalary(), paidLeave, now);
 
 
-        double netSalary = hra + allowance + basicSalary - deductions;
+
+        double netSalary = salaryDto.getHra() + salaryDto.getBasicSalary() + salaryDto.getAllowances() - deductions;
 
         PayrollDto payrollDto = new PayrollDto();
         payrollDto.setEmployeeId(employeeId);
         payrollDto.setPayrollMonth(month);
-        payrollDto.setPayrollYear(year);
+        payrollDto.setPayrollYear(now.getYear());
         payrollDto.setDeductions(deductions);
         payrollDto.setNetSalary(netSalary);
 
         Payroll payroll = PayrollMapper.mapToPayroll(payrollDto, new Payroll());
         payrollRepository.save(payroll);
+        return payrollDto;
     }
 
-    private double fetchPaidLeave(Long employeeId) {
-//         Implement logic to fetch paid leave value based on employeeId
-//         This is a placeholder implementation
-        return 2.0;
-    }
+
 
     private double calculateDeductions(double basicSalary, double paidLeave, LocalDate date) {
-//        if (paidLeave == 0) {
-//            return 0.0;
-//        }
-//        YearMonth yearMonth = YearMonth.of(date.getYear(), date.getMonth());
-//        int daysInMonth = yearMonth.lengthOfMonth();
-//        return basicSalary / daysInMonth * paidLeave;
-        return 6000.0;
+        int numberOfDaysInMonth = YearMonth.of(date.getYear(), date.getMonth()).lengthOfMonth();
+        return (basicSalary / numberOfDaysInMonth) * paidLeave;
     }
 
 
