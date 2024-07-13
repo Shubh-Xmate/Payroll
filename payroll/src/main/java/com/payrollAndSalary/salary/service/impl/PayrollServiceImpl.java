@@ -4,18 +4,14 @@ import com.payrollAndSalary.salary.dto.EmployeeDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
 import com.payrollAndSalary.salary.dto.SalaryDto;
 
-import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.entity.Payroll;
-import com.payrollAndSalary.salary.entity.Salary;
 import com.payrollAndSalary.salary.exception.PayrollAlreadyExistsException;
 import com.payrollAndSalary.salary.exception.ResourceNotFoundException;
 import com.payrollAndSalary.salary.mapper.PayrollMapper;
 import com.payrollAndSalary.salary.repository.PayrollRepository;
-import com.payrollAndSalary.salary.repository.SalaryRepository;
 import com.payrollAndSalary.salary.service.IPayrollService;
 import com.payrollAndSalary.salary.service.ISalaryService;
 import com.payrollAndSalary.salary.service.clients.EmployeeFeignClient;
-import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.util.Locale;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -61,7 +54,11 @@ public class PayrollServiceImpl implements IPayrollService {
         // Automatically get month and year
         LocalDate now = LocalDate.now();
         String month = now.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        int year = now.getYear();
 
+        if(DoesPayrollExist(employeeId,month,year)){
+            throw new PayrollAlreadyExistsException("Payroll already exists");
+        }
         // Assume paidLeave is fetched from another branch
 //        double paidLeave = fetchPaidLeave(employeeId); // not present now
         double paidLeave = 1.0;
@@ -81,12 +78,12 @@ public class PayrollServiceImpl implements IPayrollService {
         Payroll payroll = PayrollMapper.mapToPayroll(payrollDto, new Payroll());
         payrollRepository.save(payroll);
         return payrollDto;
+
     }
 
     public PayrollDto createSinglePayroll(String mobileNumber) {
         ResponseEntity<EmployeeDto> employeeDtoResponseEntity = employeeFeignClient.fetchAccount(mobileNumber);
         EmployeeDto employeeDto = employeeDtoResponseEntity.getBody();
-
         SalaryDto salaryDto = iSalaryService.fetchSalaryDetails(employeeDto.getSalaryId());
         return createPayroll(employeeDto.getEmployeeId(),salaryDto);
     }
@@ -96,15 +93,20 @@ public class PayrollServiceImpl implements IPayrollService {
         return (basicSalary / numberOfDaysInMonth) * paidLeave;
     }
 
+    public boolean DoesPayrollExist(Long employeeId,String month,int year){
+        if(payrollRepository.findByEmployeeIdAndPayrollMonthAndPayrollYear(employeeId,month,year).isPresent())
+        {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public PayrollDto fetchPayrollDetails(Long employeeId, String month, int year) {
-        Payroll foundPayroll = payrollRepository.findByEmployeeId(employeeId)
+        Payroll foundPayroll = payrollRepository.findByEmployeeIdAndPayrollMonthAndPayrollYear(employeeId,month,year)
                 .orElseThrow(() -> new ResourceNotFoundException("Payroll", "employeeId",employeeId)
                 );
         PayrollDto payrollDto = PayrollMapper.mapToPayrollDto(foundPayroll, new PayrollDto());
         return payrollDto;
     }
 }
-
-

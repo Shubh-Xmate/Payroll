@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a7b378b-89bc-40a5-a456-610b6f722e8d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Payroll.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Payroll.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/SalaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/SalaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/repository/PayrollRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/repository/PayrollRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
