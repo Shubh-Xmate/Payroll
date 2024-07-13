@@ -23,13 +23,13 @@ public class PayrollController {
         return ResponseEntity.status(HttpStatus.OK).body("Hello World");
     }
 
-//    @PostMapping("/create")
-//    public ResponseEntity<ResponseDto> createPayroll(@RequestParam Long employeeId) {
-//        iPayrollService.createPayroll(employeeId);
-//        return ResponseEntity
-//                .status(HttpStatus.CREATED)
-//                .body(new ResponseDto("201", "Created successfully"));
-//    }
+    @PostMapping("/create")
+    public ResponseEntity<ResponseDto> createPayroll(@RequestParam String mobileNumber) {
+        iPayrollService.createSinglePayroll(mobileNumber);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(new ResponseDto("201", "Created successfully"));
+    }
 
     @PostMapping("/createforall")
     public ResponseEntity<ResponseDto> createPayroll() {

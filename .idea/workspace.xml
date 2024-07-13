@@ -1,85 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="865dc134-4a41-4a7a-826f-790b4622ccba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/payroll/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/service/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/service/IEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/service/impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/service/impl/EmployeeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configserver/src/main/java/com/training/configserver/ConfigserverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/configserver/src/main/java/com/training/configserver/ConfigserverApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eurekaserver/src/main/java/com/training/eurekaserver/EurekaserverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eurekaserver/src/main/java/com/training/eurekaserver/EurekaserverApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/PayrollApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/PayrollApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/dto/PayrollDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/dto/PayrollDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/resources/schema.sql" afterDir="false" />
-=======
-    <list default="true" id="4744dc4a-c26d-41c1-b5fa-3d88a50d88e4" name="Changes" comment="">
+    <list default="true" id="4a7b378b-89bc-40a5-a456-610b6f722e8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Payroll.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Payroll.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/PayrollApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/PayrollApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/mapper/PayrollMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/mapper/PayrollMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/SalaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/SalaryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/IPayrollService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" afterDir="false" />
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< HEAD
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2j6Ba7eIfBLQOJTLaeu6ncb0c0x" />
-=======
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2j6CMA7p7xwi2g50SXv3snk5Mr1" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
+  <component name="ProjectId" id="2j94BPJ8wMIbikoCorniD8PZf75" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-<<<<<<< HEAD
     "Application.ConfigserverApplication.executor": "Run",
     "Application.EmployeeApplication.executor": "Run",
     "Application.EurekaserverApplication.executor": "Run",
@@ -88,51 +45,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "payrollFeign",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/parneet.a.singh/OneDrive - UKG/Documents/coding/java-project-main/day06"
+    "last_opened_file_path": "C:/Users/parneet.a.singh/OneDrive - UKG/Documents/payroll",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "build.tools"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.GatewayserverApplication">
+  <component name="RunManager" selected="Application.PayrollApplication">
     <configuration name="ConfigserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.training.configserver.ConfigserverApplication" />
-=======
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ConfigserverApplication.executor": "Run",
-    "Spring Boot.EurekaserverApplication.executor": "Run",
-    "Spring Boot.LeaveApplication.executor": "Run",
-    "Spring Boot.PayrollApplication.executor": "Run",
-    "git-widget-placeholder": "payrollFeign",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mansi/OneDrive - UKG/Desktop/Group 1 payroll/account/java-project-main/day05_B",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="MicronautRunConfigurationType" />
-        <option value="QuarkusRunConfigurationType" />
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.PayrollApplication">
-    <configuration name="ConfigserverApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
       <module name="configserver" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.training.configserver.ConfigserverApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.training.configserver.*" />
@@ -143,10 +64,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <configuration name="EmployeeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.ukg.employee.EmployeeApplication" />
       <module name="employee" />
       <extension name="coverage">
@@ -161,11 +79,7 @@
     </configuration>
     <configuration name="EurekaserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.training.eurekaserver.EurekaserverApplication" />
-=======
-    <configuration name="EurekaserverApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
       <module name="eurekaserver" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.training.eurekaserver.EurekaserverApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.training.eurekaserver.*" />
@@ -176,24 +90,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-<<<<<<< HEAD
     <configuration name="GatewayserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.training.gatewayserver.GatewayserverApplication" />
       <module name="gatewayserver" />
-=======
-    <configuration name="GatewayserverApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="gatewayserver" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.training.gatewayserver.GatewayserverApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LeaveApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="leave" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.payroll.leave.LeaveApplication" />
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.training.gatewayserver.*" />
@@ -204,87 +103,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PayrollApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <configuration name="PayrollApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.payrollAndSalary.salary.PayrollApplication" />
       <module name="payroll" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.payrollAndSalary.salary.PayrollApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.payrollAndSalary.salary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.GatewayserverApplication" />
-      <item itemvalue="Application.ConfigserverApplication" />
-      <item itemvalue="Application.EmployeeApplication" />
-      <item itemvalue="Application.EurekaserverApplication" />
-      <item itemvalue="Application.PayrollApplication" />
-    </list>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
+        <item itemvalue="Application.PayrollApplication" />
         <item itemvalue="Application.GatewayserverApplication" />
         <item itemvalue="Application.EmployeeApplication" />
-        <item itemvalue="Application.PayrollApplication" />
         <item itemvalue="Application.EurekaserverApplication" />
         <item itemvalue="Application.ConfigserverApplication" />
-=======
-        <item itemvalue="Spring Boot.LeaveApplication" />
-        <item itemvalue="Spring Boot.EurekaserverApplication" />
-        <item itemvalue="Spring Boot.ConfigserverApplication" />
->>>>>>> 42e9f18bf66b05e377a63ed99350ce7e2ed8e7af
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4744dc4a-c26d-41c1-b5fa-3d88a50d88e4" name="Changes" comment="" />
-      <created>1720698089006</created>
+      <changelist id="4a7b378b-89bc-40a5-a456-610b6f722e8d" name="Changes" comment="" />
+      <created>1720785823035</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1720698089006</updated>
-      <workItem from="1720698090014" duration="7800000" />
-      <workItem from="1720718618482" duration="3404000" />
-      <workItem from="1720754922815" duration="244000" />
-      <workItem from="1720755183816" duration="60000" />
-      <workItem from="1720755286386" duration="140000" />
-      <workItem from="1720755618239" duration="391000" />
-      <workItem from="1720756020944" duration="10289000" />
+      <updated>1720785823035</updated>
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/payrollFeign" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

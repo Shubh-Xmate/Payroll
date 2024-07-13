@@ -12,4 +12,6 @@ public interface IPayrollService {
     PayrollDto fetchPayrollDetails(Long employeeId, String payrollMonth, int payrollYear);
 
     List<PayrollDto> getEmployeesPayrolls();
+
+    PayrollDto createSinglePayroll(String mobileNumber);
 }

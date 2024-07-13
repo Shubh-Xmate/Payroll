@@ -15,7 +15,7 @@ import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/employee")
 @AllArgsConstructor
 public class EmployeeController {
 

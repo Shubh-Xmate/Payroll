@@ -56,7 +56,7 @@ public class PayrollServiceImpl implements IPayrollService {
         return payrollDtoList;
     }
     @Override
-    public PayrollDto createPayroll(Long employeeId, SalaryDto salaryDto) {
+    public PayrollDto createPayroll(Long employeeId,SalaryDto salaryDto) {
 
         // Automatically get month and year
         LocalDate now = LocalDate.now();
@@ -83,7 +83,13 @@ public class PayrollServiceImpl implements IPayrollService {
         return payrollDto;
     }
 
+    public PayrollDto createSinglePayroll(String mobileNumber) {
+        ResponseEntity<EmployeeDto> employeeDtoResponseEntity = employeeFeignClient.fetchAccount(mobileNumber);
+        EmployeeDto employeeDto = employeeDtoResponseEntity.getBody();
 
+        SalaryDto salaryDto = iSalaryService.fetchSalaryDetails(employeeDto.getSalaryId());
+        return createPayroll(employeeDto.getEmployeeId(),salaryDto);
+    }
 
     private double calculateDeductions(double basicSalary, double paidLeave, LocalDate date) {
         int numberOfDaysInMonth = YearMonth.of(date.getYear(), date.getMonth()).lengthOfMonth();
