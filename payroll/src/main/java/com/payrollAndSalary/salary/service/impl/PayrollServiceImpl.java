@@ -1,14 +1,13 @@
 package com.payrollAndSalary.salary.service.impl;
 
-import com.payrollAndSalary.salary.dto.EmployeeDto;
-import com.payrollAndSalary.salary.dto.PayrollDto;
-import com.payrollAndSalary.salary.dto.SalaryDto;
+import com.payrollAndSalary.salary.dto.*;
 
 import com.payrollAndSalary.salary.entity.Payroll;
 import com.payrollAndSalary.salary.exception.PayrollAlreadyExistsException;
 import com.payrollAndSalary.salary.exception.ResourceNotFoundException;
 import com.payrollAndSalary.salary.mapper.PayrollMapper;
 import com.payrollAndSalary.salary.repository.PayrollRepository;
+import com.payrollAndSalary.salary.service.IPaidLeaveDetail;
 import com.payrollAndSalary.salary.service.IPayrollService;
 import com.payrollAndSalary.salary.service.ISalaryService;
 import com.payrollAndSalary.salary.service.clients.EmployeeFeignClient;
@@ -28,6 +27,7 @@ public class PayrollServiceImpl implements IPayrollService {
     private final PayrollRepository payrollRepository;
     private final EmployeeFeignClient employeeFeignClient;
     private final ISalaryService iSalaryService;
+    private final IPaidLeaveDetail iPaidLeaveDetail;
 
 
     @Override
@@ -60,8 +60,7 @@ public class PayrollServiceImpl implements IPayrollService {
             throw new PayrollAlreadyExistsException("Payroll already exists");
         }
         // Assume paidLeave is fetched from another branch
-//        double paidLeave = fetchPaidLeave(employeeId); // not present now
-        double paidLeave = 1.0;
+        double paidLeave = fetchPaidLeave(employeeId);
         double deductions = calculateDeductions(salaryDto.getBasicSalary(), paidLeave, now);
 
 
@@ -86,6 +85,17 @@ public class PayrollServiceImpl implements IPayrollService {
         EmployeeDto employeeDto = employeeDtoResponseEntity.getBody();
         SalaryDto salaryDto = iSalaryService.fetchSalaryDetails(employeeDto.getSalaryId());
         return createPayroll(employeeDto.getEmployeeId(),salaryDto);
+    }
+
+    private double fetchPaidLeave(Long employeeId) {
+        PaidLeaveDetailDto paidLeaveDetailDto = iPaidLeaveDetail.fetchPaidLeaveDetail(employeeId);
+        LeaveDetailsDto leaveDetailsDto = paidLeaveDetailDto.getLeaveDetailsDto();
+
+        if (leaveDetailsDto != null) {
+            return leaveDetailsDto.getPaidLeaves();
+        } else {
+            throw new ResourceNotFoundException("Leave details", "employeeId", employeeId);
+        }
     }
 
     private double calculateDeductions(double basicSalary, double paidLeave, LocalDate date) {
