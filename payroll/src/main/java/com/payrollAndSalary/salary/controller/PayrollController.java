@@ -13,7 +13,7 @@ import java.util.List;
 
 @Valid
 @RestController
-@RequestMapping("api/payroll")
+@RequestMapping("/api/payroll")
 @AllArgsConstructor
 public class PayrollController {
     private final IPayrollService iPayrollService;
@@ -47,7 +47,3 @@ public class PayrollController {
                 .body(payrollDto);
     }
 }
-
-
-
-

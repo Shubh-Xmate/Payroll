@@ -61,6 +61,7 @@ public class PayrollServiceImpl implements IPayrollService {
         }
         // Assume paidLeave is fetched from another branch
         double paidLeave = fetchPaidLeave(employeeId);
+//        double paidLeave = 2.0;
         double deductions = calculateDeductions(salaryDto.getBasicSalary(), paidLeave, now);
 
 

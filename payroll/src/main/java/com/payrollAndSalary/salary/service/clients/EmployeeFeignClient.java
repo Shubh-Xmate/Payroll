@@ -11,10 +11,10 @@ import java.util.List;
 
 @FeignClient("employee")
 public interface EmployeeFeignClient {
-    @GetMapping("/api/employee/fetchall")
+    @GetMapping("/api/fetchall")
     ResponseEntity<List<EmployeeDto>> fetchAllEmployees();
 
-    @GetMapping("/api/employee/fetch")
+    @GetMapping("/api/fetch")
     ResponseEntity<EmployeeDto> fetchAccount(@RequestParam
                                              @Pattern(regexp = "^$|[0-9]{10}", message = "Mobile Number should have ten digit")
                                              String mobileNumber);
