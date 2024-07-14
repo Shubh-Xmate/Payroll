@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4a7b378b-89bc-40a5-a456-610b6f722e8d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/src/main/java/com/ukg/employee/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/controller/PayrollController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/client/LeaveFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/client/LeaveFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/clients/EmployeeFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PayrollServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leave/src/main/java/com/payroll/leave/service/impl/LeaveDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/leave/src/main/java/com/payroll/leave/service/impl/LeaveDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PaidLeaveDetailImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/src/main/java/com/payrollAndSalary/salary/service/impl/PaidLeaveDetailImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,9 +111,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.PayrollApplication" />
+        <item itemvalue="Application.LeaveApplication" />
         <item itemvalue="Application.EmployeeApplication" />
         <item itemvalue="Application.GatewayserverApplication" />
-        <item itemvalue="Application.LeaveApplication" />
         <item itemvalue="Application.EurekaserverApplication" />
       </list>
     </recent_temporary>
