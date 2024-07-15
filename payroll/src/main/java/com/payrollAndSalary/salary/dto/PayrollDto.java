@@ -14,5 +14,5 @@ public class PayrollDto {
     private int payrollYear;
     private Double deductions;
     private Double netSalary;
-    private SalaryDto salaryDto;
+//    private SalaryDto salaryDto;
 }

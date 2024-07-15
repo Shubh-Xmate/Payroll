@@ -8,12 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gatewayserver" />
-        <module name="eurekaserver" />
-        <module name="leave" />
         <module name="payroll" />
         <module name="accounts" />
-        <module name="configserver" />
-        <module name="employee" />
       </profile>
     </annotationProcessing>
   </component>
@@ -21,7 +17,6 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accounts" options="-parameters" />
       <module name="configserver" options="-parameters" />
-      <module name="employee" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
       <module name="gatewayserver" options="-parameters" />
       <module name="leave" options="-parameters" />

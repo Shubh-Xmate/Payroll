@@ -1,5 +1,6 @@
 package com.payrollAndSalary.salary.mapper;
 
+import com.payrollAndSalary.salary.dto.PaidLeaveDetailDto;
 import com.payrollAndSalary.salary.dto.PayrollDto;
 import com.payrollAndSalary.salary.entity.Payroll;
 import jakarta.persistence.*;
@@ -24,5 +25,10 @@ public class PayrollMapper {
         payroll.setDeductions(payrollDto.getDeductions());
         payroll.setNetSalary(payrollDto.getNetSalary());
         return payroll;
+    }
+
+    public static PaidLeaveDetailDto mapToPaidLeaveDetailDto(Payroll payroll, PaidLeaveDetailDto paidLeaveDetailDto){
+        paidLeaveDetailDto.setEmployeeId(payroll.getEmployeeId());
+        return paidLeaveDetailDto;
     }
 }
