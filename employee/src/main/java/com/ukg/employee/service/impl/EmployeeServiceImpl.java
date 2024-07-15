@@ -1,6 +1,7 @@
 package com.ukg.employee.service.impl;
 
 import com.ukg.employee.dto.EmployeeDto;
+import com.ukg.employee.dto.LeaveDetailsDto;
 import com.ukg.employee.entity.Employee;
 import com.ukg.employee.exception.EmployeeAlreadyExistsException;
 import com.ukg.employee.exception.ResourceNotFoundByIdException;
@@ -8,6 +9,7 @@ import com.ukg.employee.exception.ResourceNotFoundException;
 import com.ukg.employee.mapper.EmployeeMapper;
 import com.ukg.employee.repository.EmployeeRepository;
 import com.ukg.employee.service.IEmployeeService;
+import com.ukg.employee.service.client.LeaveDetailFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements IEmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final LeaveDetailFeignClient leaveDetailFeignClient;
 
     @Override
     public void createEmployee(EmployeeDto employeeDto) {
@@ -30,6 +33,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto, new Employee());
         employeeRepository.save(employee);
+        LeaveDetailsDto leaveDetailsDto = new LeaveDetailsDto();
+        leaveDetailsDto.setEmployeeId(employee.getEmployeeId());
+        leaveDetailFeignClient.createLeaveDetails(leaveDetailsDto);
     }
 
 //    private accounts createNewAccount(Long customerId) {
