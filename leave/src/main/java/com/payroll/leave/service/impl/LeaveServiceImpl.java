@@ -111,9 +111,7 @@ public class LeaveServiceImpl implements ILeaveService {
             long officeDays = countOfficeDays(leave.getStartDate(), leave.getEndDate());
             decrementLeaveDetails(leave.getLeaveType(), leaveDetails, officeDays);
         }
-        else{
-            return;
-        }
+
         leaveDetailsRepository.save(leaveDetails);
         leaveRepository.save(updatedLeave);
 

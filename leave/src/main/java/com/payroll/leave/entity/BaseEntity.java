@@ -14,10 +14,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+@EntityListeners(AuditingEntityListener.class) // do not want to manual update/insert below fields
 @MappedSuperclass
 @Data @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class) // do not want to manual update/insert below fields
 public class BaseEntity {
 
     @CreatedDate
