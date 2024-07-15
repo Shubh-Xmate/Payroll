@@ -3,6 +3,7 @@ package com.payroll.leave.service.impl;
 
 import com.payroll.leave.dto.LeaveDetailsDto;
 import com.payroll.leave.dto.LeaveDto;
+import com.payroll.leave.dto.LeaveMsgDto;
 import com.payroll.leave.entity.Leave;
 import com.payroll.leave.entity.LeaveDetails;
 import com.payroll.leave.exception.ResourceNotFoundException;
@@ -12,8 +13,12 @@ import com.payroll.leave.repository.LeaveRepository;
 import com.payroll.leave.service.ILeaveDetailsService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import com.payroll.leave.service.ILeaveService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -25,9 +30,11 @@ import java.util.List;
 @Transactional
 public class LeaveServiceImpl implements ILeaveService {
 
+    private static final Logger logger = LoggerFactory.getLogger(LeaveServiceImpl.class);
     private LeaveRepository leaveRepository;
     private LeaveDetailsRepository leaveDetailsRepository;
     private ILeaveDetailsService iLeaveDetailsService;
+    private StreamBridge streamBridge;
 
     @Override
     public boolean createLeaveRequest(LeaveDto leaveDto) {
@@ -37,10 +44,18 @@ public class LeaveServiceImpl implements ILeaveService {
         if(validLeave(leaveDto, leaveDetailsDto)){
             System.out.println("Shailesh");
             Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
-            leaveRepository.save(leave);
+            Leave savedLeave = leaveRepository.save(leave);
+            createMessage(savedLeave);
             isCreated = true;
         }
         return isCreated;
+    }
+
+    private void createMessage(Leave savedLeave) {
+        LeaveMsgDto leaveMsgDto = new LeaveMsgDto(savedLeave.getEmployeeId(), savedLeave.getStartDate().toString(),
+                savedLeave.getEndDate().toString(), savedLeave.getLeaveType());
+        boolean isSend = streamBridge.send("sendCommunication-out-0", leaveMsgDto);
+        logger.info("Is Communication send? - {}", isSend);
     }
 
     public static long countOfficeDays(LocalDate startDate, LocalDate endDate) {
