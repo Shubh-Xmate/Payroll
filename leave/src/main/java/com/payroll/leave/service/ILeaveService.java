@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ILeaveService {
 
-    boolean createLeaveRequest(LeaveDto leaveDto);
+    boolean createLeaveRequest(LeaveDto leaveDto, Long employeeId);
     List<LeaveDto> getAllLeave(Long employeeId);
     void changeLeaveStatus(Long leaveId, String status, LeaveDto leaveDto);
 
