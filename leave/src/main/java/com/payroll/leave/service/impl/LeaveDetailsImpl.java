@@ -35,6 +35,7 @@ public class LeaveDetailsImpl extends ILeaveDetailsService {
 
         leaveDetails.setEmployeeId(employeeId);
         leaveDetails.setLeaveYear(year);
+//        leaveDetails.setPaidLeaves(3L);
 
         leaveDetailsRepository.save(leaveDetails);
     }

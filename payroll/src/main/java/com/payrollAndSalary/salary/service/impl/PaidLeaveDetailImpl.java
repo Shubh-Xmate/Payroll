@@ -30,10 +30,13 @@ public class PaidLeaveDetailImpl implements IPaidLeaveDetail {
     @Override
     public PaidLeaveDetailDto fetchPaidLeaveDetail(Long employeeId) {
 
-        Payroll payroll = payrollRepository.findById(employeeId).orElseThrow(
-                () -> new ResourceNotFoundException("Payroll", "employeeId", employeeId)
-        );
+//        Payroll payroll = payrollRepository.findById(employeeId)
+//                .orElseThrow(
+//                () -> new ResourceNotFoundException("Payroll", "employeeId", employeeId)
+//        );
 
+        Payroll payroll = new Payroll();
+        payroll.setEmployeeId(employeeId);
 
         PaidLeaveDetailDto paidLeaveDetailDto = PayrollMapper.mapToPaidLeaveDetailDto(payroll,new PaidLeaveDetailDto());
 

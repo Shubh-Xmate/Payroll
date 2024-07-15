@@ -14,5 +14,3 @@ public interface LeaveFeignClient {
     public ResponseEntity<LeaveDetailsDto> getLeaves(@RequestParam Long employeeId, @RequestParam Long leaveYear);
 
 }
-
-
