@@ -3,6 +3,7 @@ package com.ukg.employee.service.impl;
 import com.ukg.employee.dto.EmployeeDto;
 import com.ukg.employee.entity.Employee;
 import com.ukg.employee.exception.EmployeeAlreadyExistsException;
+import com.ukg.employee.exception.ResourceNotFoundByIdException;
 import com.ukg.employee.exception.ResourceNotFoundException;
 import com.ukg.employee.mapper.EmployeeMapper;
 import com.ukg.employee.repository.EmployeeRepository;
@@ -17,7 +18,6 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements IEmployeeService {
-//    private final AccountsRepository accountsRepository;
     private final EmployeeRepository employeeRepository;
 
     @Override
@@ -48,6 +48,16 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public EmployeeDto fetchEmployeeDetails(String mobileNumber) {
         Employee foundEmployee = employeeRepository.findByMobileNumber(mobileNumber).orElseThrow(
                 () -> new ResourceNotFoundException("Employee", "mobileNumber", mobileNumber)
+        );
+
+        EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(foundEmployee, new EmployeeDto());
+        return employeeDto;
+    }
+
+    @Override
+    public EmployeeDto fetchEmployeeByIdDetails(Long employeeId) {
+        Employee foundEmployee = employeeRepository.findByEmployeeId(employeeId).orElseThrow(
+                () -> new ResourceNotFoundByIdException("Employee", "employeeId", employeeId)
         );
 
         EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(foundEmployee, new EmployeeDto());

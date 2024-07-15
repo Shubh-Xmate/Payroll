@@ -15,4 +15,6 @@ public interface IEmployeeService {
     boolean updateEmployeeDetails(String mobileNumber, EmployeeDto employeeDto);
 
     List<EmployeeDto> getAll();
+
+    EmployeeDto fetchEmployeeByIdDetails(Long employeeId);
 }

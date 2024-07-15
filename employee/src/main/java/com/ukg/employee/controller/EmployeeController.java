@@ -30,7 +30,7 @@ public class EmployeeController {
         }
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateAccount(@RequestParam
+    public ResponseEntity<ResponseDto> updateEmployee(@RequestParam
                                                          @Pattern(regexp = "^$|[0-9]{10}", message = "Mobile Number should have ten digit")
                                                          String mobileNumber, @Valid @RequestBody EmployeeDto employeeDto) {
         boolean isUpdated = iEmployeeService.updateEmployeeDetails(mobileNumber, employeeDto);
@@ -45,7 +45,7 @@ public class EmployeeController {
         }
     }
     @GetMapping("/fetch")
-    public ResponseEntity<EmployeeDto> fetchAccount(@RequestParam
+    public ResponseEntity<EmployeeDto> fetchEmployee(@RequestParam
                                                         @Pattern(regexp = "^$|[0-9]{10}", message = "Mobile Number should have ten digit")
                                                         String mobileNumber){
         EmployeeDto employeeDto = iEmployeeService.fetchEmployeeDetails(mobileNumber);
@@ -53,8 +53,17 @@ public class EmployeeController {
                 .status(HttpStatus.OK)
                 .body(employeeDto);
     }
+
+    @GetMapping("/fetchById")
+    public ResponseEntity<EmployeeDto> fetchEmployeeById(@RequestParam Long employeeId){
+        EmployeeDto employeeDto = iEmployeeService.fetchEmployeeByIdDetails(employeeId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(employeeDto);
+    }
+
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDto> deleteAccount(@RequestParam
+    public ResponseEntity<ResponseDto> deleteEmployee(@RequestParam
                                                          @Pattern(regexp = "^$|[0-9]{10}", message = "Mobile Number should have ten digit")
                                                          String mobileNumber){
         boolean isDeleted = iEmployeeService.deleteEmployee(mobileNumber);
@@ -69,7 +78,7 @@ public class EmployeeController {
         }
     }
     @GetMapping("/fetchall")
-    public ResponseEntity<List<EmployeeDto>> getAllCustomer(){
+    public ResponseEntity<List<EmployeeDto>> getAllEmployee(){
         List<EmployeeDto> employeeDtoList = iEmployeeService.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(employeeDtoList);
     }
