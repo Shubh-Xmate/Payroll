@@ -1,6 +1,7 @@
 package com.payroll.leave.service.impl;
 
 
+import com.payroll.leave.dto.EmployeeDto;
 import com.payroll.leave.dto.LeaveDetailsDto;
 import com.payroll.leave.dto.LeaveDto;
 import com.payroll.leave.entity.Leave;
@@ -10,8 +11,10 @@ import com.payroll.leave.mapper.LeaveMapper;
 import com.payroll.leave.repository.LeaveDetailsRepository;
 import com.payroll.leave.repository.LeaveRepository;
 import com.payroll.leave.service.ILeaveDetailsService;
+import com.payroll.leave.service.clients.EmployeeFeignClient;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.hibernate.metamodel.internal.EmbeddableInstantiatorPojoIndirecting;
 import org.springframework.stereotype.Service;
 import com.payroll.leave.service.ILeaveService;
 
@@ -28,12 +31,16 @@ public class LeaveServiceImpl implements ILeaveService {
     private LeaveRepository leaveRepository;
     private LeaveDetailsRepository leaveDetailsRepository;
     private ILeaveDetailsService iLeaveDetailsService;
+    private final EmployeeFeignClient employeeFeignClient;
 
     @Override
-    public boolean createLeaveRequest(LeaveDto leaveDto) {
+    public boolean createLeaveRequest(LeaveDto leaveDto, Long employeeId) {
         boolean isCreated = false;
         Long leaveYear = (long) LocalDate.now().getYear();
-        LeaveDetailsDto leaveDetailsDto = iLeaveDetailsService.fetchAccountDetails(leaveDto.getEmployeeId(), leaveYear);
+
+        EmployeeDto employeeDto = employeeFeignClient.fetchAccount(employeeId).getBody();
+        leaveDto.setManagerId(employeeDto.getManagerId());
+        LeaveDetailsDto leaveDetailsDto = iLeaveDetailsService.fetchAccountDetails(employeeDto.getEmployeeId(), leaveYear);
         if(validLeave(leaveDto, leaveDetailsDto)){
             System.out.println("Shailesh");
             Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());

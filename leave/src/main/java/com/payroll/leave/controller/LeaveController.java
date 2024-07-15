@@ -21,8 +21,8 @@ public class LeaveController {
     private final ILeaveService iLeaveService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createLeave(@RequestBody @Valid LeaveDto leaveDto){
-        boolean isCreated = iLeaveService.createLeaveRequest(leaveDto);
+    public ResponseEntity<ResponseDto> createLeave(@RequestBody @Valid LeaveDto leaveDto, @RequestParam Long employeeId){
+        boolean isCreated = iLeaveService.createLeaveRequest(leaveDto, employeeId);
         if(isCreated){
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ResponseDto("200", "leave Request created successfully"));
