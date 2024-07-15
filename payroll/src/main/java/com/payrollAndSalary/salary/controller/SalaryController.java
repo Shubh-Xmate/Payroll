@@ -15,7 +15,7 @@ import java.util.List;
 
 @Valid
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/salary")
 @AllArgsConstructor
 public class SalaryController {
     private final ISalaryService iSalaryService;
