@@ -22,6 +22,20 @@ spring:
   h2:
     console:
       enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    connection-timeout: 10s
+  cloud:
+    stream:
+      bindings:
+        sendCommunication-out-0:
+          destination: send-communication
+        updateCommunicationStatus-in-0:
+          destination: communication-sent
+          group: ${spring.application.name}
 
 management:
   endpoints:
@@ -39,7 +53,6 @@ management:
 endpoints:
   shutdown:
     enabled: true
-
 
 eureka:
   instance:

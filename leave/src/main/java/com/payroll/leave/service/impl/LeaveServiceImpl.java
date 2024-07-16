@@ -4,6 +4,7 @@ package com.payroll.leave.service.impl;
 import com.payroll.leave.dto.EmployeeDto;
 import com.payroll.leave.dto.LeaveDetailsDto;
 import com.payroll.leave.dto.LeaveDto;
+import com.payroll.leave.dto.LeaveMsgDto;
 import com.payroll.leave.entity.Leave;
 import com.payroll.leave.entity.LeaveDetails;
 import com.payroll.leave.exception.ResourceNotFoundException;
@@ -14,9 +15,11 @@ import com.payroll.leave.service.ILeaveDetailsService;
 import com.payroll.leave.service.clients.EmployeeFeignClient;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.hibernate.metamodel.internal.EmbeddableInstantiatorPojoIndirecting;
+import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import com.payroll.leave.service.ILeaveService;
+import org.slf4j.Logger;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -28,9 +31,11 @@ import java.util.List;
 @Transactional
 public class LeaveServiceImpl implements ILeaveService {
 
+    private static final Logger logger = LoggerFactory.getLogger(LeaveServiceImpl.class);
     private LeaveRepository leaveRepository;
     private LeaveDetailsRepository leaveDetailsRepository;
     private ILeaveDetailsService iLeaveDetailsService;
+    private StreamBridge streamBridge;
     private final EmployeeFeignClient employeeFeignClient;
 
     @Override
@@ -40,14 +45,22 @@ public class LeaveServiceImpl implements ILeaveService {
 
         EmployeeDto employeeDto = employeeFeignClient.fetchAccount(employeeId).getBody();
         leaveDto.setManagerId(employeeDto.getManagerId());
+        EmployeeDto managerDto = employeeFeignClient.fetchAccount(employeeDto.getManagerId()).getBody();
         LeaveDetailsDto leaveDetailsDto = iLeaveDetailsService.fetchAccountDetails(employeeDto.getEmployeeId(), leaveYear);
         if(validLeave(leaveDto, leaveDetailsDto)){
-            System.out.println("Shailesh");
             Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
-            leaveRepository.save(leave);
+            Leave savedLeave = leaveRepository.save(leave);
+            createMessage(savedLeave, managerDto.getMobileNumber());
             isCreated = true;
         }
         return isCreated;
+    }
+
+    private void createMessage(Leave savedLeave, String mobileNumber) {
+        LeaveMsgDto leaveMsgDto = new LeaveMsgDto(savedLeave.getEmployeeId(), savedLeave.getStartDate().toString(),
+                savedLeave.getEndDate().toString(), savedLeave.getLeaveType(), savedLeave.getStatus(), mobileNumber);
+        boolean isSend = streamBridge.send("sendCommunication-out-0", leaveMsgDto);
+        logger.info("Is Communication send? - {}", isSend);
     }
 
     public static long countOfficeDays(LocalDate startDate, LocalDate endDate) {
@@ -112,8 +125,13 @@ public class LeaveServiceImpl implements ILeaveService {
             decrementLeaveDetails(leave.getLeaveType(), leaveDetails, officeDays);
         }
 
+
+
         leaveDetailsRepository.save(leaveDetails);
-        leaveRepository.save(updatedLeave);
+        Leave savedLeave = leaveRepository.save(updatedLeave);
+        EmployeeDto employeeDto = employeeFeignClient.fetchAccount(leave.getEmployeeId()).getBody();
+
+        createMessage(savedLeave, employeeDto.getMobileNumber());
 
     }
 
