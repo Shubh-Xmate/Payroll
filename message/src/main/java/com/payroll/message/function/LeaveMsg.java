@@ -20,7 +20,7 @@ public class LeaveMsg {
     @Bean
     public Function<LeaveMsgDto, LeaveMsgDto> sms(){
         return (leaveMsgDto) ->{
-            sendSMS(leaveMsgDto.mobileNumber(), getMessage(leaveMsgDto));
+//            sendSMS(leaveMsgDto.mobileNumber(), getMessage(leaveMsgDto));
             logger.info("Sending SMS with details - {}");
             return leaveMsgDto;
         };
@@ -38,14 +38,14 @@ public class LeaveMsg {
         }
         return sb.toString();
     }
-    public String sendSMS(String mobileNumber, String message) {
-        String SID = "AC7fd055f7d2d07ae84af5fa64c86b9ad7";
-        String TOKEN = "6c31d08532c44e89729d84d5c7fe4db6";
-        Twilio.init(SID, TOKEN);
-        System.out.println("I am in the twilio send sms function");
-        Message msg = Message.creator(new PhoneNumber("+91"+mobileNumber),
-                new PhoneNumber("+16366925654"), message).create();
-
-        return "DONE";
-    }
+//    public String sendSMS(String mobileNumber, String message) {
+//        String SID = "AC7fd055f7d2d07ae84af5fa64c86b9ad7";
+//        String TOKEN = "6c31d08532c44e89729d84d5c7fe4db6";
+//        Twilio.init(SID, TOKEN);
+//        System.out.println("I am in the twilio send sms function");
+//        Message msg = Message.creator(new PhoneNumber("+91"+mobileNumber),
+//                new PhoneNumber("+16366925654"), message).create();
+//
+//        return "DONE";
+//    }
 }
