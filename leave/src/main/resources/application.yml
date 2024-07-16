@@ -33,6 +33,9 @@ spring:
       bindings:
         sendCommunication-out-0:
           destination: send-communication
+        updateCommunicationStatus-in-0:
+          destination: communication-sent
+          group: ${spring.application.name}
 
 management:
   endpoints:

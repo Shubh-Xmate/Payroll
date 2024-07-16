@@ -5,12 +5,14 @@ spring:
     name: message
   cloud:
     function:
-      definition: email|sms
+      definition: sms
     stream:
       bindings:
-        emailsms-in-0:
+        sms-in-0:
           destination: send-communication
-        emailsms-in-0-group: $(spring-application-name)
+          group: ${spring.application.name}
+        sms-out-0:
+          destination: communication-sent
 
   rabbitmq:
     host: localhost

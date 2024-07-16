@@ -48,10 +48,8 @@ public class LeaveServiceImpl implements ILeaveService {
         EmployeeDto managerDto = employeeFeignClient.fetchAccount(employeeDto.getManagerId()).getBody();
         LeaveDetailsDto leaveDetailsDto = iLeaveDetailsService.fetchAccountDetails(employeeDto.getEmployeeId(), leaveYear);
         if(validLeave(leaveDto, leaveDetailsDto)){
-            System.out.println("Shailesh");
             Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
             Leave savedLeave = leaveRepository.save(leave);
-
             createMessage(savedLeave, managerDto.getMobileNumber());
             isCreated = true;
         }
@@ -60,7 +58,7 @@ public class LeaveServiceImpl implements ILeaveService {
 
     private void createMessage(Leave savedLeave, String mobileNumber) {
         LeaveMsgDto leaveMsgDto = new LeaveMsgDto(savedLeave.getEmployeeId(), savedLeave.getStartDate().toString(),
-                savedLeave.getEndDate().toString(), savedLeave.getLeaveType(), mobileNumber);
+                savedLeave.getEndDate().toString(), savedLeave.getLeaveType(), savedLeave.getStatus(), mobileNumber);
         boolean isSend = streamBridge.send("sendCommunication-out-0", leaveMsgDto);
         logger.info("Is Communication send? - {}", isSend);
     }
@@ -127,8 +125,13 @@ public class LeaveServiceImpl implements ILeaveService {
             decrementLeaveDetails(leave.getLeaveType(), leaveDetails, officeDays);
         }
 
+
+
         leaveDetailsRepository.save(leaveDetails);
-        leaveRepository.save(updatedLeave);
+        Leave savedLeave = leaveRepository.save(updatedLeave);
+        EmployeeDto employeeDto = employeeFeignClient.fetchAccount(leave.getEmployeeId()).getBody();
+
+        createMessage(savedLeave, employeeDto.getMobileNumber());
 
     }
 
