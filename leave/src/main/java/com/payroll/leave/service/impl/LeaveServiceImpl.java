@@ -15,6 +15,7 @@ import com.payroll.leave.service.clients.EmployeeFeignClient;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.hibernate.metamodel.internal.EmbeddableInstantiatorPojoIndirecting;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 import com.payroll.leave.service.ILeaveService;
 
@@ -32,6 +33,7 @@ public class LeaveServiceImpl implements ILeaveService {
     private LeaveDetailsRepository leaveDetailsRepository;
     private ILeaveDetailsService iLeaveDetailsService;
     private final EmployeeFeignClient employeeFeignClient;
+    private final StreamBridge streamBridge;
 
     @Override
     public boolean createLeaveRequest(LeaveDto leaveDto, Long employeeId) {
@@ -135,5 +137,6 @@ public class LeaveServiceImpl implements ILeaveService {
                 break;
         }
     }
+
 
 }

@@ -2,6 +2,7 @@ package com.ukg.employee.controller;
 
 import com.ukg.employee.dto.EmployeeDto;
 import com.ukg.employee.dto.ResponseDto;
+import com.ukg.employee.dto.ResponseDto1;
 import com.ukg.employee.service.IEmployeeService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -22,17 +23,19 @@ public class EmployeeController {
     private final IEmployeeService iEmployeeService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto){
-        iEmployeeService.createEmployee(employeeDto);
+    public ResponseEntity<ResponseDto1> createEmployee(@Valid @RequestBody EmployeeDto employeeDto){
+        Long employeeId = iEmployeeService.createEmployee(employeeDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new ResponseDto( "201",  "Created Successfully"));
-        }
+                .body(new ResponseDto1( "201",  "Created Successfully",employeeId, employeeDto.getMobileNumber()));
+    }
+
 
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateEmployee(@RequestParam
                                                          @Pattern(regexp = "^$|[0-9]{10}", message = "Mobile Number should have ten digit")
                                                          String mobileNumber, @Valid @RequestBody EmployeeDto employeeDto) {
+
         boolean isUpdated = iEmployeeService.updateEmployeeDetails(mobileNumber, employeeDto);
         if (isUpdated) {
             return ResponseEntity

@@ -21,28 +21,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public void createEmployee(EmployeeDto employeeDto) {
+    public Long createEmployee(EmployeeDto employeeDto) {
         Optional<Employee> foundEmployee = employeeRepository.findByMobileNumber(employeeDto.getMobileNumber());
 
         if (foundEmployee.isPresent()) {
-            throw new EmployeeAlreadyExistsException("Employee already exists");
+            throw new EmployeeAlreadyExistsException("Employee already exists for employeeId = " + foundEmployee.get().getEmployeeId() + " and Mobile Number = " + foundEmployee.get().getMobileNumber());
         }
 
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto, new Employee());
         employeeRepository.save(employee);
+        return employee.getEmployeeId();
     }
 
-//    private accounts createNewAccount(Long customerId) {
-//        accounts accounts = new accounts();
-//        accounts.setCustomerId(customerId);
-//        accounts.setAccountType("Savings");
-//        long randomAccNumber = 10000000000L + new Random().nextInt(900000000);
-//        accounts.setAccountNumber(String.valueOf(randomAccNumber));
-//        accounts.setBranchAddress("201, Main Road, London");
-////        accounts.setCreatedAt(LocalDateTime.now());
-////        accounts.setCreatedBy("Anonymous");
-//        return accounts;
-//    }
 
     @Override
     public EmployeeDto fetchEmployeeDetails(String mobileNumber) {
