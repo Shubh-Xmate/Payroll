@@ -6,7 +6,6 @@ import com.payroll.leave.exception.EmployeeAlreadyExistsException;
 import com.payroll.leave.exception.ResourceNotFoundException;
 import com.payroll.leave.mapper.LeaveDetailsMapper;
 import com.payroll.leave.repository.LeaveDetailsRepository;
-import com.payroll.leave.repository.LeaveRepository;
 import com.payroll.leave.service.ILeaveDetailsService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -35,6 +34,7 @@ public class LeaveDetailsImpl extends ILeaveDetailsService {
 
         leaveDetails.setEmployeeId(employeeId);
         leaveDetails.setLeaveYear(year);
+//        leaveDetails.setPaidLeaves(3L);
 
         leaveDetailsRepository.save(leaveDetails);
     }

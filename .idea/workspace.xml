@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67dec7a7-619f-456a-87dc-c81aa3f74b38" name="Changes" comment="">
@@ -192,11 +192,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="67dec7a7-619f-456a-87dc-c81aa3f74b38" name="Changes" comment="" />
-      <created>1721036106078</created>
+      <changelist id="4a7b378b-89bc-40a5-a456-610b6f722e8d" name="Changes" comment="" />
+      <created>1720785823035</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1721036106078</updated>
+      <updated>1720785823035</updated>
     </task>
     <servers />
   </component>
