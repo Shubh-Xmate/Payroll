@@ -21,4 +21,3 @@ spring:
     password: guest
     connection-timeout: 10s
 
-

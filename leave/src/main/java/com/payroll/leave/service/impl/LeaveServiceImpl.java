@@ -37,6 +37,7 @@ public class LeaveServiceImpl implements ILeaveService {
     private ILeaveDetailsService iLeaveDetailsService;
     private StreamBridge streamBridge;
     private final EmployeeFeignClient employeeFeignClient;
+    private final StreamBridge streamBridge;
 
     @Override
     public boolean createLeaveRequest(LeaveDto leaveDto, Long employeeId) {
@@ -151,5 +152,6 @@ public class LeaveServiceImpl implements ILeaveService {
                 break;
         }
     }
+
 
 }
