@@ -50,7 +50,7 @@ public class LeaveServiceImpl implements ILeaveService {
         if(validLeave(leaveDto, leaveDetailsDto)){
             Leave leave = LeaveMapper.mapToLeave(leaveDto, new Leave());
             Leave savedLeave = leaveRepository.save(leave);
-            createMessage(savedLeave, managerDto.getMobileNumber());
+//            createMessage(savedLeave, managerDto.getMobileNumber());
             isCreated = true;
         }
         return isCreated;
@@ -111,6 +111,7 @@ public class LeaveServiceImpl implements ILeaveService {
         return leaveList.stream().map(leave
                 -> LeaveMapper.mapToLeaveDto(leave, new LeaveDto())).toList();
     }
+
 
     @Override
     public void changeLeaveStatus( Long leaveId, String status, LeaveDto leaveDto) {
