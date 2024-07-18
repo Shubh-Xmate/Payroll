@@ -23,11 +23,11 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createEmployee(@Valid @RequestBody EmployeeDto employeeDto){
-        iEmployeeService.createEmployee(employeeDto);
+        Long employeeId = iEmployeeService.createEmployee(employeeDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(new ResponseDto( "201",  "Created Successfully"));
-        }
+                .body(new ResponseDto( "201",  "Created Successfully with employeeId = "+ employeeId + " and mobile number = " + employeeDto.getMobileNumber()));
+    }
 
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateEmployee(@RequestParam

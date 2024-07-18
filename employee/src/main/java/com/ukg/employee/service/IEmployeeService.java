@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IEmployeeService {
 
-    void createEmployee(EmployeeDto employeeDto);
+    Long createEmployee(EmployeeDto employeeDto);
 
     EmployeeDto fetchEmployeeDetails(String mobileNumber);
 
