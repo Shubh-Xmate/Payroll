@@ -5,17 +5,21 @@ import org.junit.jupiter.api.*;
 import org.springframework.context.annotation.DependsOn;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EmployeeControllerTest {
 
 	public static Integer employeeId;
-	public static String mobileNumber = "8979593098";
+	public static String mobileNumber = "8879593098";
 
 	@Test
 	@Order(1)
@@ -160,7 +164,7 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@Order(6)
+	@Order(10)
 	void updateUser() {
 		HashMap<String, Object> data = new HashMap<>();
 		data.put("firstName", "silkie");
@@ -193,7 +197,7 @@ public class EmployeeControllerTest {
 	}
 
 	@Test
-	@Order(7)
+	@Order(11)
 	void deleteUser() {
 		Response response = given()
 				.when()
@@ -262,5 +266,136 @@ public class EmployeeControllerTest {
 			System.out.println("Error: " + errorMessage);
 		}
 	}
+	@Test
+	@Order(6)
+	void createLeaveDetailsforUser() {
+		HashMap<String, Object> data = new HashMap<>();
+		data.put("employeeId", employeeId); // Example mobile number
+
+		Response response = given()
+				.contentType("application/json")
+				.body(data)
+				.when()
+				.post("http://localhost:8082/api/leaveDetails/create")
+				.then()
+				.log().all()
+				.extract().response();
+
+		int statusCode = response.getStatusCode();
+		if (statusCode == 200) {
+			String message = response.jsonPath().getString("message");
+		} else {
+			String errorMessage = response.jsonPath().getString("errorMessage");
+			System.out.println("Error: " + errorMessage);
+		}
+	}
+	@Test
+	@Order(7)
+	void fetchLeaveDetailsforValidUser() {
+//		employeeId=8;
+		Response response = given()
+				.when()
+				.get("http://localhost:8082/api/leaveDetails/fetch?employeeId=" + employeeId + "&leaveYear=2024")
+				.then()
+				.log().all()
+				.extract().response();
+
+		int statusCode = response.getStatusCode();
+
+		if (statusCode == 200) {
+			// Positive case: User with the mobile number exists // Store employeeId globally
+			response
+					.then()
+					.statusCode(200)
+					.body("employeeId", equalTo(employeeId))
+					.body("remainingSickLeaves", equalTo(7))
+					.body("remainingCasualLeaves", equalTo(12))
+					.body("remainingEarnedLeaves", equalTo(21))
+					.body("leaveYear", equalTo(2024))
+					.body("paidLeaves",equalTo(0))
+					.body("totalPaidLeaves",equalTo(0))
+					.log().all();
+		} else{
+			String errorMessage = response.jsonPath().getString("errorMessage");
+			System.out.println("Error: " + errorMessage);
+		}
+	}
+	@Test
+	@Order(8)
+	void createLeaveforUser() {
+		HashMap<String, Object> data = new HashMap<>();
+		data.put("employeeId", employeeId);
+		data.put("leaveType", "casual");
+		data.put("startDate","2024-07-18");
+		data.put("endDate","2024-07-19");
+		data.put("appliedDate","2024-07-09");
+		data.put("status", "PENDING");
+		data.put("comments", "");
+		data.put("managerId","1");
+
+
+		Response response = given()
+				.contentType("application/json")
+				.body(data)
+				.when()
+				.post("http://localhost:8082/api/create")
+				.then()
+				.log().all()
+				.extract().response();
+
+		int statusCode = response.getStatusCode();
+		if (statusCode == 200) {
+			String message = response.jsonPath().getString("message");
+		} else {
+			String errorMessage = response.jsonPath().getString("errorMessage");
+			System.out.println("Error: " + errorMessage);
+		}
+	}
+	@Test
+	@Order(9)
+	void fetchLeaveforValidUser() {
+		Response response = given()
+				.when()
+				.get("http://localhost:8082/api/fetchall?employeeId=" + employeeId)
+				.then()
+				.log().all()
+				.extract().response();
+
+		int statusCode = response.getStatusCode();
+
+		if (statusCode == 200) {
+			// Positive case: User with the mobile number exists
+			response
+					.then()
+					.statusCode(200);
+
+			// Extract the list of leaves from the response
+			List<Map<String, Object>> leaves = response.jsonPath().getList("");
+
+			// Check if the list is not empty
+			assertFalse(leaves.isEmpty());
+
+			// Validate the first leave in the list (or iterate through all leaves)
+			Map<String, Object> leave = leaves.get(0);
+
+			assertEquals(employeeId, leave.get("employeeId"));
+			assertEquals("casual", leave.get("leaveType"));
+			assertEquals("2024-07-18", leave.get("startDate"));
+			assertEquals("2024-07-19", leave.get("endDate"));
+			assertEquals("2024-07-09", leave.get("appliedDate"));
+			assertEquals("PENDING", leave.get("status"));
+			assertEquals("", leave.get("comments"));
+			assertEquals(1, leave.get("managerId"));
+
+			System.out.println("Leave fetched successfully.");
+		} else {
+			String errorMessage = response.jsonPath().getString("errorMessage");
+			System.out.println("Error: " + errorMessage);
+		}
+	}
+
+
+
+
 
 }

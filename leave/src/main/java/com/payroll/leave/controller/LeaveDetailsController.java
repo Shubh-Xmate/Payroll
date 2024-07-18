@@ -27,7 +27,7 @@ public class LeaveDetailsController {
     public ResponseEntity<ResponseDto> createLeaveDetailsAccount(@RequestBody LeaveDetailsDto leaveDetailsDto){
         iLeaveDetailsService.createAccount(leaveDetailsDto.getEmployeeId());
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new ResponseDto("200", "leave details created successfully for employeeId" + leaveDetailsDto.getEmployeeId()));
+                .body(new ResponseDto("200", "leave details created successfully for employeeId = " + leaveDetailsDto.getEmployeeId()));
     }
 
     @GetMapping("/fetch")

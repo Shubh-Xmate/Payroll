@@ -43,7 +43,7 @@ public class LeaveDetailsImpl extends ILeaveDetailsService {
     public LeaveDetailsDto fetchAccountDetails(Long employeeId, Long leaveYear) {
         LeaveDetails leaveDetails = leaveDetailsRepository.findByEmployeeIdAndLeaveYear(employeeId, leaveYear)
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Employee", "employeeId and leaveYear", String.valueOf(employeeId + leaveYear))
+                        () -> new ResourceNotFoundException("Employee", "employeeId and leaveYear", String.valueOf(leaveYear))
                 );
 
         LeaveDetailsDto leaveDetailsDto = LeaveDetailsMapper.mapToLeaveDetailsDto(leaveDetails, new LeaveDetailsDto());
