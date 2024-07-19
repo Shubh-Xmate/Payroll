@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class LeaveController {
 
     private final ILeaveService iLeaveService;
@@ -37,6 +38,12 @@ public class LeaveController {
     @GetMapping("/fetchall")
     public ResponseEntity<List<LeaveDto>> getLeaves(@RequestParam Long employeeId){ // change this to mobileNumber
         List<LeaveDto> leaveDtoList = iLeaveService.getAllLeave(employeeId);
+        return ResponseEntity.status(HttpStatus.OK).body(leaveDtoList);
+    }
+
+    @GetMapping("/fetchallbyManagerId")
+    public ResponseEntity<List<LeaveDto>> getLeavesbyManagerId(@RequestParam Long managerId){ // change this to mobileNumber
+        List<LeaveDto> leaveDtoList = iLeaveService.getAllLeaveByManagerId(managerId);
         return ResponseEntity.status(HttpStatus.OK).body(leaveDtoList);
     }
 

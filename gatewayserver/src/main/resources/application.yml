@@ -31,3 +31,17 @@ info:
     name: "Gateway Server"
     description: "Routing server for my application"
     version: "1.0.0"
+cors:
+  allowed-origins:
+    - http://localhost:4200
+  allowed-methods:
+    - GET
+    - POST
+    - OPTIONS
+  allowed-headers:
+    - Authorization
+    - Content-Type
+  exposed-headers:
+    - Authorization
+  allow-credentials: true
+  max-age: 3600

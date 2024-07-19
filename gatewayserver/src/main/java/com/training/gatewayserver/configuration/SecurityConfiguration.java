@@ -16,8 +16,7 @@ public class SecurityConfiguration {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity){
         httpSecurity.authorizeExchange(exchange -> exchange
                 .pathMatchers(HttpMethod.GET).permitAll()
-                .pathMatchers("/payroll/**")
-                        .authenticated())
+                .pathMatchers(HttpMethod.POST).permitAll())
 
                 .oauth2ResourceServer(config -> config.jwt(Customizer.withDefaults()));
         httpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable);

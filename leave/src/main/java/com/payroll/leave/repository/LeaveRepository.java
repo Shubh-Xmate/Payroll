@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface LeaveRepository extends JpaRepository<Leave, Long> {
     List<Leave> findAllByEmployeeId(Long employeeId);
-
+    List<Leave> findAllByManagerId(Long managerId);
 }

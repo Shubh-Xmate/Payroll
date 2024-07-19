@@ -7,6 +7,7 @@ import com.payroll.leave.entity.Leave;
 public class LeaveMapper {
 
     public static LeaveDto mapToLeaveDto(Leave leave, LeaveDto leaveDto ){
+        leaveDto.setLeaveId(leave.getLeaveId());
         leaveDto.setEmployeeId(leave.getEmployeeId());
         leaveDto.setLeaveType(leave.getLeaveType());
         leaveDto.setStartDate(leave.getStartDate());
