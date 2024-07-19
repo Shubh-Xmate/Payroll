@@ -112,6 +112,7 @@ public class LeaveServiceImpl implements ILeaveService {
                 -> LeaveMapper.mapToLeaveDto(leave, new LeaveDto())).toList();
     }
 
+
     @Override
     public List<LeaveDto> getAllLeaveByManagerId(Long managerId) {
         List<Leave> leaveList = leaveRepository.findAllByManagerId(managerId);
